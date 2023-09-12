@@ -1,8 +1,5 @@
-import logo from './logo.svg';
 import './App.scss';
-import Board from './Board';
 import Game from './Game';
-import Login from './Login';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { useState } from 'react';
@@ -11,6 +8,7 @@ function App() {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+
   return (
     <div className="App">
 

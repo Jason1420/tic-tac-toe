@@ -30,7 +30,6 @@ const Board = ({ xIsNext, squares, onPlay, currentMove }) => {
         status = "Winner: " + winner;
         winLineCopy = winLines.map((item, index) => {
             item = calculateWinner(squares).winLine.includes(index) ? true : false;
-
             return item;
         })
         console.log(winLineCopy)
@@ -44,7 +43,8 @@ const Board = ({ xIsNext, squares, onPlay, currentMove }) => {
     return (
         <>
             <div className="status">{status}</div>
-            <div>{console.log(winLineCopy)}</div>
+            <div>{console.log('>>> check currentMove', currentMove)}</div>
+            <div>{console.log('>>> check squares: ', squares)}</div>
             <div className="board-row">
                 <Square value={squares[0]} handleOnClick={() => { onSquareClick(0) }} active={winLineCopy[0]} />
                 <Square value={squares[1]} handleOnClick={() => { onSquareClick(1) }} active={winLineCopy[1]} />

@@ -1,7 +1,4 @@
-import { useState } from "react";
 const Square = ({ value, active, handleOnClick }) => {
-
-
     /*-----------Render-----------*/
     return (
         <>

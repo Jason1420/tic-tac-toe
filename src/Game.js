@@ -1,26 +1,23 @@
 import Board from "./Board"
-
-import { useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { handlePlay, jumpTo } from "./actions/GameAction";
 const Game = () => {
+    /*-----------REDUX-----------*/
+    const history = useSelector(state => state.game.history);
+    const currentMove = useSelector(state => state.game.currentMove);
+    const currentSquares = useSelector(state => state.game.currentSquares);
+    const xIsNext = useSelector(state => state.game.xIsNext);
 
-    /*-----------Declare-----------*/
-    const [history, setHistory] = useState([Array(9).fill(null)]);
-    const [currentMove, setCurrentMove] = useState(0);
-    const currentSquares = history[currentMove];
-    const xIsNext = currentMove % 2 === 0;
+    const dispatch = useDispatch();
 
-
-
-    /*-------------Function-------------- */
-    /*-----------Handle play-----------*/
-    const handlePlay = (nextSquares) => {
-        const nextHistory = [...history.slice(0, currentMove + 1), nextSquares];
-        setHistory(nextHistory);
-        setCurrentMove(nextHistory.length - 1);
+    const handlePlayOnClick = (nextSquares) => {
+        const action = handlePlay(nextSquares);
+        dispatch(action);
     }
-    /*-----------JumpTo-----------*/
-    const jumpTo = (nextMove) => {
-        setCurrentMove(nextMove);
+
+    const handleJumpTo = (nextMove) => {
+        const action = jumpTo(nextMove);
+        dispatch(action);
     }
     /*-----------Move-----------*/
     const moves = history.map((squares, move) => {
@@ -32,7 +29,7 @@ const Game = () => {
         }
         return (
             <li key={move}>
-                <button onClick={() => jumpTo(move)}>{description}</button>
+                <button onClick={() => handleJumpTo(move)}>{description}</button>
             </li>
         );
     });
@@ -43,7 +40,8 @@ const Game = () => {
 
             <div className="game">
                 <div className="game-board">
-                    <Board xIsNext={xIsNext} squares={currentSquares} onPlay={handlePlay} currentMove={currentMove} />
+                    <Board xIsNext={xIsNext} squares={currentSquares}
+                        onPlay={handlePlayOnClick} currentMove={currentMove} />
                 </div>
                 <div className="game-info">
                     <ol>{moves}</ol>
