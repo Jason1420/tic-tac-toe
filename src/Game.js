@@ -45,6 +45,7 @@ const Game = () => {
                 </div>
                 <div className="game-info">
                     <ol>{moves}</ol>
+                    {/* <div>{console.log(`check move : `, moves)}</div> */}
                 </div>
             </div>
         </>
