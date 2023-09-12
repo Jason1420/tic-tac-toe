@@ -1,8 +1,14 @@
 import { useState } from "react";
 import Square from "./Square";
 const Board = ({ xIsNext, squares, onPlay, currentMove }) => {
+
+
+    /*-----------Declare-----------*/
     const [winLines, setWinLines] = useState(Array(9).fill(false))
     let winLineCopy = [Array(9).fill(false)];
+
+
+    /*-----------Function onClickSquare-----------*/
     const onSquareClick = (i) => {
         if (calculateWinner(squares) || squares[i]) {
             return;
@@ -15,6 +21,9 @@ const Board = ({ xIsNext, squares, onPlay, currentMove }) => {
         }
         onPlay(nextSquares);
     }
+
+
+    /*-----------Set status of game-----------*/
     const winner = calculateWinner(squares) !== null ? calculateWinner(squares).squares : null;
     let status;
     if (winner) {
@@ -30,6 +39,8 @@ const Board = ({ xIsNext, squares, onPlay, currentMove }) => {
     } else {
         status = "Next player: " + (xIsNext ? "X" : "O");
     }
+
+    /*-----------Render-----------*/
     return (
         <>
             <div className="status">{status}</div>
@@ -53,6 +64,8 @@ const Board = ({ xIsNext, squares, onPlay, currentMove }) => {
     )
 
 }
+
+/*-----------Function calculate winner-----------*/
 const calculateWinner = (squares) => {
     const lines = [
         [0, 1, 2],
@@ -75,4 +88,6 @@ const calculateWinner = (squares) => {
     }
     return null;
 }
+
+
 export default Board;

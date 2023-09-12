@@ -3,19 +3,26 @@ import Board from "./Board"
 import { useState } from "react";
 const Game = () => {
 
-
+    /*-----------Declare-----------*/
     const [history, setHistory] = useState([Array(9).fill(null)]);
     const [currentMove, setCurrentMove] = useState(0);
     const currentSquares = history[currentMove];
     const xIsNext = currentMove % 2 === 0;
+
+
+
+    /*-------------Function-------------- */
+    /*-----------Handle play-----------*/
     const handlePlay = (nextSquares) => {
         const nextHistory = [...history.slice(0, currentMove + 1), nextSquares];
         setHistory(nextHistory);
         setCurrentMove(nextHistory.length - 1);
     }
+    /*-----------JumpTo-----------*/
     const jumpTo = (nextMove) => {
         setCurrentMove(nextMove);
     }
+    /*-----------Move-----------*/
     const moves = history.map((squares, move) => {
         let description;
         if (move > 0) {
@@ -29,6 +36,8 @@ const Game = () => {
             </li>
         );
     });
+
+    /*-----------Render-----------*/
     return (
         <>
 
@@ -43,4 +52,5 @@ const Game = () => {
         </>
     )
 }
+
 export default Game

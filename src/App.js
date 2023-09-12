@@ -44,7 +44,6 @@ function App() {
             </Modal.Footer>
           </Modal>
         </div>
-        <img src={logo} className="App-logo" alt="logo" />
         <hr />
         <Game />
       </header >

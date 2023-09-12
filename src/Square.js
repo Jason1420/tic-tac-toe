@@ -1,21 +1,21 @@
 import { useState } from "react";
-const Square = (props) => {
+const Square = ({ value, active, handleOnClick }) => {
 
+
+    /*-----------Render-----------*/
     return (
         <>
-            {props.active === true ?
-                <button className="square-win" onClick={props.handleOnClick}
-                    style={props.value === "X" ? { color: "red" } : { color: "blue" }}
+            {active === true ?
+                <button className="square-win" onClick={handleOnClick}
+                    style={value === "X" ? { color: "red" } : { color: "blue" }}
                 >
-                    {props.value}
+                    {value}
                 </button>
-
                 :
-
-                <button className="square" onClick={props.handleOnClick}
-                    style={props.value === "X" ? { color: "red" } : { color: "blue" }}
+                <button className="square" onClick={handleOnClick}
+                    style={value === "X" ? { color: "red" } : { color: "blue" }}
                 >
-                    {props.value}
+                    {value}
                 </button>
             }
         </>
